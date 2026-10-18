@@ -139,12 +139,64 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 }
 
 .demoBar{height:66px;background:#0b110e;color:#f2f5ee;display:flex;align-items:center;gap:24px;padding:10px 22px;border-bottom:1px solid #334535}.prediaHome{font-size:26px;font-weight:700;text-decoration:none;letter-spacing:-1px;color:inherit}.prediaHome span{color:#c8fa75}.demoLabel{display:flex;flex-direction:column;gap:3px}.demoLabel strong{font-size:12px}.demoLabel span{font-size:10px;color:#bac5b9}.demoBar nav{margin-left:auto;display:flex;align-items:center;gap:17px}.demoBar nav a,.demoBar nav button{font-size:11px;color:inherit;background:none;border:0;text-decoration:none;cursor:pointer}.demoBar nav button{background:#c8fa75;color:#152510;border-radius:6px;padding:10px 13px;font-weight:700}.demoBar a:focus-visible,.demoBar button:focus-visible,.toggle:focus-visible,.ind .hd:focus-visible,.chip:focus-visible{outline:3px solid #c8fa75;outline-offset:3px}#app{height:calc(100dvh - 66px)}.brand .sub{line-height:1.45}.compass{font-size:10px}.vctl{width:245px}.rout .ln{gap:10px}.rout .ln b{text-align:right}.demo-inline{background:#f1f5e9;border-bottom:1px solid #d8e0ca;padding:11px 20px;font-size:11px;color:#40523a;line-height:1.5}.demo-inline a{color:#21462c;font-weight:600}.ind .cf{max-width:80px;overflow:hidden;text-overflow:ellipsis}.note,.rout .ln{overflow-wrap:anywhere}@media(max-width:860px){.demoBar{height:auto;min-height:66px;gap:12px;padding:10px 14px;flex-wrap:wrap;position:sticky;top:0;z-index:30}.demoLabel{flex:1}.demoLabel span{max-width:45ch}.demoBar nav{width:100%;justify-content:space-between;margin:0;gap:12px}.demoBar nav a,.demoBar nav button{font-size:10px}.demoBar nav button{padding:8px 10px}#app{height:auto}#view{position:relative;top:auto;height:59vh;min-height:360px}#side{height:auto}.legend{font-size:10px;right:10px;bottom:12px;padding:8px}.vctl{left:10px;bottom:12px;width:215px;padding:9px 10px}.vbtn{font-size:10px;padding:6px 7px}.hint{font-size:10px;max-width:65%;text-align:center}.brand h1{font-size:20px}}@media(max-width:390px){.legend{max-width:112px;font-size:9px}.vctl{width:202px}.demoLabel span{font-size:9px}.demoBar{gap:9px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+.stageNav{min-height:62px;background:#102018;color:#dce9d9;display:flex;justify-content:center;gap:8px;padding:9px 16px;border-bottom:1px solid #334535}
+.stageNav button{border:1px solid #3b5640;background:transparent;color:#dce9d9;border-radius:8px;font:600 12px/1.35 system-ui,sans-serif;padding:9px 15px;cursor:pointer}
+.stageNav button span{color:#c8fa75;margin-right:8px}
+.stageNav button[aria-selected="true"]{background:#c8fa75;color:#14200d;border-color:#c8fa75}
+.stageNav button[aria-selected="true"] span{color:#385126}
+.stageNav button:focus-visible,.stageNext button:focus-visible{outline:3px solid #c8fa75;outline-offset:2px}
+#app{height:calc(100dvh - 128px)}
+body:not([data-stage="drone"]) #side{display:none}
+body:not([data-stage="drone"]) #c3d,body:not([data-stage="drone"]) .vctl,body:not([data-stage="drone"]) .legend,body:not([data-stage="drone"]) .hint,body:not([data-stage="drone"]) .compass,body:not([data-stage="drone"]) #load,body:not([data-stage="drone"]) #downloadPDF{visibility:hidden}
+body:not([data-stage="drone"]) #view{background:radial-gradient(circle at 75% 10%,#244530,#0b1510 60%)}
+.stageScreen{display:none;position:absolute;inset:0;padding:clamp(20px,4vw,46px);overflow:auto;color:#f0f5eb;z-index:4}
+body[data-stage="secondary"] [data-stage-panel="secondary"],body[data-stage="decision"] [data-stage-panel="decision"]{display:block}
+.stageIntro{max-width:870px;margin:auto}
+.stageEyebrow{font-size:11px;letter-spacing:.11em;font-weight:800;color:#c8fa75}
+.stageIntro h2{font-size:clamp(28px,4vw,43px);line-height:1.12;margin:14px 0;font-weight:600;letter-spacing:-1px}
+.stageIntro p{font-size:14px;line-height:1.65;max-width:75ch;color:#c5d2c4}
+.stageCards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;max-width:870px;margin:28px auto}
+.stageCards article{border:1px solid #43604a;border-radius:13px;background:#15251b;padding:20px;min-height:190px}
+.stageCards article span{font-size:10px;letter-spacing:.09em;color:#c8fa75;font-weight:800}
+.stageCards h3{font-size:19px;line-height:1.18;margin:11px 0;color:#fff}
+.stageCards p{font-size:12px;line-height:1.5;color:#c5d2c4}
+.stageCards small{display:block;margin-top:14px;color:#9fb19f;font-size:10px}
+.stageNext{max-width:870px;margin:auto;color:#d2dfce;font-size:12px;line-height:1.65;border-top:1px solid #43604a;padding-top:18px}
+.stageNext button,.stageNext a{display:inline-block;border:0;background:#c8fa75;color:#172715;border-radius:7px;padding:9px 13px;font-size:11px;font-weight:800;cursor:pointer;text-decoration:none;margin-left:10px}
+.stageDrone{display:none;position:absolute;top:15px;right:78px;max-width:360px;background:#0c1c18de;border:1px solid #507152;border-radius:9px;color:#e8f3e4;padding:9px 12px;z-index:4;font-size:10px;line-height:1.45}
+.stageDrone strong{color:#c8fa75;display:block;font-size:10px;letter-spacing:.08em;margin-bottom:3px}
+body[data-stage="drone"] .stageDrone{display:block}
+@media(max-width:860px){#app{height:auto}.stageNav{justify-content:space-between}.stageNav button{flex:1;padding:9px 6px;font-size:10px}.stageNav button span{display:block;margin:0 0 3px}.stageScreen{position:relative;min-height:calc(100dvh - 180px)}body:not([data-stage="drone"]) #view{height:auto;position:relative}.stageCards{grid-template-columns:1fr;gap:9px;margin:18px auto}.stageCards article{min-height:0;padding:14px 16px}.stageCards h3{font-size:17px;margin:6px 0}.stageCards small{margin-top:7px}.stageIntro h2{margin:10px 0}.stageNext button,.stageNext a{margin:10px 0 0;display:block;width:max-content}.stageDrone{top:12px;left:12px;right:12px;max-width:450px;pointer-events:none;font-size:9px}.stageDrone span{display:none}}
+@media(max-width:540px){.demoBar{gap:10px;padding:8px 12px;height:auto;min-height:64px}.demoLabel span{display:none}.demoBar nav{gap:8px}.demoBar nav a,.demoBar nav button{font-size:10px}.demoBar nav a:nth-child(2){display:none}.prediaHome{font-size:23px}.stageNav{min-height:62px}#app{height:auto}body[data-stage="drone"] #view{height:56vh}}
 </style>
 </head>
-<body><header class="demoBar"><a href="./" class="prediaHome">predia<span>·</span></a><div class="demoLabel"><strong>Ficha de ejemplo</strong><span>Modelo adaptado · ubicación e imágenes identificables retiradas</span></div><nav><a href="./">Volver a Predia</a><a href="Predia_ficha_ejemplo.zip" download="Predia_ficha_ejemplo.zip">Descargar ficha (.zip)</a><button id="downloadPDF" type="button">Descargar PDF</button></nav></header>
+<body data-stage="secondary"><header class="demoBar"><a href="./" class="prediaHome">predia<span>·</span></a><div class="demoLabel"><strong>Ficha de ejemplo</strong><span>Modelo adaptado · ubicación e imágenes identificables retiradas</span></div><nav><a href="./">Volver a Predia</a><a href="Predia_ficha_ejemplo.zip" download="Predia_ficha_ejemplo.zip">Descargar ficha (.zip)</a><button id="downloadPDF" type="button">Descargar PDF</button></nav></header>
+<nav class="stageNav" aria-label="Niveles del ejemplo">
+  <button type="button" data-stage-button="secondary" aria-selected="true"><span>01</span> Información existente</button>
+  <button type="button" data-stage-button="drone" aria-selected="false"><span>02</span> Dron + modelo de elevación</button>
+  <button type="button" data-stage-button="decision" aria-selected="false"><span>03</span> Decisiones y especialistas</button>
+</nav>
 <div id="app">
   <!-- VIEWER -->
   <div id="view">
+<div class="stageScreen" data-stage-panel="secondary">
+  <div class="stageIntro"><span class="stageEyebrow">NIVEL 01 · ANTES DE IR A CAMPO</span><h2>¿Qué sabemos ya de este terreno?</h2><p>Empezamos con información existente para saber dónde mirar primero. Estos son resultados de referencia de la ficha original, sin mostrar su ubicación; para otro terreno habría que consultar las fuentes de nuevo.</p></div>
+  <div class="stageCards">
+    <article><span>AGUA</span><h3>¿Hay señales que debamos revisar?</h3><p>La observación satelital del caso de referencia no mostró agua permanente. Eso no descarta encharcamientos ni inundaciones.</p><small>JRC y observación satelital · lectura general</small></article>
+    <article><span>AMBIENTE</span><h3>¿Hay restricciones visibles?</h3><p>En el caso de referencia no apareció traslape con las áreas protegidas consultadas. La revisión legal y local sigue pendiente.</p><small>RUNAP y WDPA · cobertura según la fuente</small></article>
+    <article><span>TERRENO</span><h3>¿Qué conviene preguntar en campo?</h3><p>La cartografía geológica regional ayuda a preparar la visita. No determina cómo cimentar ni revela los bajos pequeños del terreno.</p><small>Servicio Geológico Colombiano · escala regional</small></article>
+  </div><div class="stageNext"><strong>Lo que aún no vemos:</strong> el microrrelieve, los bajos y los volúmenes de obra. Para eso, abre el modelo de elevación obtenido con dron. <button type="button" data-stage-button="drone" aria-selected="false">Ver el nivel 02 →</button></div>
+</div>
+<div class="stageDrone" data-stage-panel="drone"><strong>NIVEL 02 · DRON</strong><span>Este relieve 3D es un modelo de elevación obtenido con dron y adaptado para el ejemplo. La primera mirada no permite ver este detalle del terreno.</span></div>
+<div class="stageScreen" data-stage-panel="decision">
+  <div class="stageIntro"><span class="stageEyebrow">NIVEL 03 · PASAR DEL HALLAZGO A LA ACCIÓN</span><h2>¿Qué hacemos con lo encontrado?</h2><p>La primera mirada orienta la decisión; el dron puede revelar detalles para enfocar el trabajo. Si un proyecto avanza, los especialistas verifican lo que importa.</p></div>
+  <div class="stageCards">
+    <article><span>AGUA</span><h3>Verificar el drenaje</h3><p>El ejemplo muestra bajos y escenarios de lluvia. Un especialista debe evaluar aportes externos y definir soluciones antes de diseñar.</p><small>Posible siguiente servicio · estudio hidrológico</small></article>
+    <article><span>RELIEVE</span><h3>Precisar la adecuación</h3><p>Explora corte y relleno en el nivel 02. Para presupuestar o construir se necesita control topográfico y validación del terreno.</p><small>Posible siguiente servicio · topografía y geotecnia</small></article>
+    <article><span>OPORTUNIDAD</span><h3>Preparar la conversación</h3><p>Un propietario o una empresa puede usar estos hallazgos para decidir qué estudiar y qué información compartir antes de avanzar.</p><small>Conexión y servicios · en preparación</small></article>
+  </div><div class="stageNext">Estos pasos son orientativos; no constituyen diseños, permisos ni una garantía de financiación. <a href="./#registro">Cuéntanos qué necesitas →</a></div>
+</div>
+
     <canvas id="c3d"></canvas>
     <div id="load">Cargando la ficha interactiva de ejemplo…</div>
     <div class="hint" id="hint">Arrastra para girar · rueda para acercar</div>
@@ -978,5 +1030,21 @@ if(window.THREE){ try { initWorld(); } catch(e) { document.getElementById('load'
   loadRainData();
 } else document.getElementById('load').textContent='No se pudo cargar el motor 3D. Revisa tu conexión y vuelve a abrir la ficha.';
 </script>
-</body>
+<script>function initPrediaStages(doc) {
+  const buttons = Array.from(doc.querySelectorAll('[data-stage-button]'));
+  const allowed = new Set(['secondary', 'drone', 'decision']);
+  function select(stage) {
+    if (!allowed.has(stage)) return;
+    doc.body.dataset.stage = stage;
+    for (const button of buttons) {
+      button.setAttribute('aria-selected', String(button.dataset.stageButton === stage));
+    }
+  }
+  for (const button of buttons) {
+    button.addEventListener('click', () => select(button.dataset.stageButton));
+  }
+  select(doc.body.dataset.stage);
+}
+
+initPrediaStages(document);</script></body>
 </html>
