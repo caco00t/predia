@@ -216,15 +216,15 @@ function cropBanner(src,asp){
 }
 function pdfHead(doc,x,y,txt){
   doc.setFillColor(0,181,226); doc.rect(x,y-2.6,2.6,2.6,'F');
-  doc.setFont('helvetica','bold'); doc.setFontSize(9.5); doc.setTextColor(0,32,91);
-  doc.text(txt.toUpperCase(), x+4.5, y, {charSpace:0.4});
+  doc.setFont('helvetica','bold'); doc.setFontSize(9.5); doc.setTextColor(22,51,37);
+  doc.text(txt.toUpperCase(), x+4.5, y, {});
   doc.setDrawColor(0,181,226); doc.setLineWidth(0.5); doc.line(x, y+2.6, 196, y+2.6);
 }
 function pdfTile(doc,x,y,w,h,label,value,unit,fill,vc){
   if(fill){doc.setFillColor(243,246,251);doc.roundedRect(x,y,w,h,2,2,'F');}
   else{doc.setDrawColor(228,233,240);doc.setLineWidth(0.3);doc.roundedRect(x,y,w,h,2,2,'S');}
   doc.setFont('helvetica','bold');doc.setFontSize(6.4);doc.setTextColor(138,144,153);
-  doc.text(label.toUpperCase(),x+4,y+5.5,{charSpace:0.2});
+  doc.text(label.toUpperCase(),x+4,y+5.5,{});
   doc.setFont('helvetica','bold');doc.setFontSize(12.5);doc.setTextColor(vc[0],vc[1],vc[2]);
   doc.text(value,x+4,y+13.2);
   if(unit){const vw=doc.getTextWidth(value);doc.setFont('helvetica','normal');doc.setFontSize(7.5);doc.setTextColor(99,102,106);doc.text(unit,x+4+vw+1.4,y+13.2);}
@@ -233,23 +233,23 @@ function generarPDF(){
   const msg=document.getElementById('eSaveMsg');
   if(!earthReady||!lastEarth){ msg.innerHTML='<span style="color:var(--bad)">Carga un polígono y calcula antes de generar el PDF.</span>'; return; }
   const J=window.jspdf&&window.jspdf.jsPDF; if(!J){ msg.innerHTML='<span style="color:var(--bad)">No se pudo cargar el generador de PDF.</span>'; return; }
-  const doc=new J({unit:'mm',format:'a4'}), P=210, M=14, W=P-2*M, e=lastEarth, NV=[0,32,91];
+  const doc=new J({unit:'mm',format:'a4'}), P=210, M=14, W=P-2*M, e=lastEarth, NV=[22,51,37];
   const n2=v=>Number(v).toLocaleString('es-CO',{minimumFractionDigits:2,maximumFractionDigits:2});
   const n0=v=>Math.round(v).toLocaleString('es-CO');
   // encabezado
-  doc.setFillColor(0,32,91); doc.rect(0,0,P,26,'F');
+  doc.setFillColor(22,51,37); doc.rect(0,0,P,26,'F');
   doc.setTextColor(255); doc.setFont('helvetica','bold'); doc.setFontSize(13);
-  doc.text('FICHA INTERACTIVA DE EJEMPLO', M, 11, {charSpace:0.4});
+  doc.text('FICHA INTERACTIVA DE EJEMPLO', M, 11, {});
   const pname=(lastPredio||'Predio').toUpperCase();
   doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(0,181,226);
-  doc.text(pname, M, 18.5, {charSpace:0.4});
+  doc.text(pname, M, 18.5, {});
   const pw=doc.getTextWidth(pname)+2;
   doc.setFont('helvetica','normal'); doc.setFontSize(8.5); doc.setTextColor(177,179,182);
   doc.text('·  '+new Date().toLocaleDateString('es-CO'), M+pw+2, 18.5);
   doc.setFont('helvetica','bold'); doc.setFontSize(14); doc.setTextColor(255);
-  doc.text('PREDIA', P-M, 12, {align:'right',charSpace:1});
+  doc.text('PREDIA', P-M, 12, {align:'right',});
   doc.setFontSize(8); doc.setTextColor(0,181,226);
-  doc.text('EJEMPLO', P-M, 17.5, {align:'right',charSpace:2.5});
+  doc.text('EJEMPLO', P-M, 17.5, {align:'right',});
   // resumen
   let y=37; pdfHead(doc,M,y,'Resumen de la evaluación'); y+=8;
   const tw=(W-8)/3, th=18;
@@ -273,9 +273,9 @@ function generarPDF(){
   pdfTile(doc,M+tw+4,    y,tw,th,'Relleno', n0(e.relleno),'m³',false,NV);
   pdfTile(doc,M+2*(tw+4),y,tw,th,'Balance de material', (e.balance>=0?'+':'')+n0(e.balance),'m³',false,[74,119,41]);
   y+=th+4;
-  doc.setFillColor(0,32,91); doc.roundedRect(M,y,W,14,2,2,'F');
+  doc.setFillColor(22,51,37); doc.roundedRect(M,y,W,14,2,2,'F');
   doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(159,180,214);
-  doc.text('COSTO PRELIMINAR DE ADECUACIÓN', M+6, y+8.6, {charSpace:0.6});
+  doc.text('COSTO PRELIMINAR DE ADECUACIÓN', M+6, y+8.6, {});
   doc.setFontSize(15); doc.setTextColor(255);
   doc.text('$ '+n0(e.costo), P-M-19, y+9, {align:'right'});
   doc.setFontSize(9); doc.setTextColor(0,181,226); doc.text('COP', P-M-6, y+9, {align:'right'});
@@ -289,7 +289,7 @@ function generarPDF(){
     e.predios.forEach(pp=>{doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(40,55,70);
       doc.text(pp.nombre,M,y);doc.text(pp.ha.toFixed(2)+' ha',M+66,y);doc.text(n0(pp.corte),M+96,y);doc.text(n0(pp.relleno),M+128,y);doc.text('$ '+n0(pp.costo),P-M,y,{align:'right'}); y+=6.5;});
     doc.setDrawColor(228,233,240);doc.line(M,y-3.5,P-M,y-3.5);
-    doc.setFont('helvetica','bold');doc.setFontSize(8.5);doc.setTextColor(0,32,91);
+    doc.setFont('helvetica','bold');doc.setFontSize(8.5);doc.setTextColor(22,51,37);
     doc.text('TOTAL',M,y);doc.text(n2(e.ha)+' ha',M+66,y);doc.text(n0(e.corte),M+96,y);doc.text(n0(e.relleno),M+128,y);doc.text('$ '+n0(e.costo),P-M,y,{align:'right'}); y+=9;
   }
   // modelo y evidencia
@@ -313,15 +313,15 @@ function generarPDF(){
   doc.setDrawColor(216,221,228); doc.setLineWidth(0.3); doc.line(M,281,P-M,281);
   doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(154,160,168);
   doc.text('Predia - Ejemplo adaptado, sin ubicacion real. Cotas locales y contorno de demostracion. Resultados y costos ilustrativos; no son diseno, presupuesto ni estudio firmado.', M, 285.5, {maxWidth:W});
-  doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(0,32,91);
-  doc.text('EJEMPLO ADAPTADO - SIN UBICACION REAL', M, 293.5, {charSpace:2});
+  doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(22,51,37);
+  doc.text('EJEMPLO ADAPTADO - SIN UBICACION REAL', M, 293.5, {});
   // ---- PÁGINA 2: ANÁLISIS TERRITORIAL COMPLETO ----
   doc.addPage();
-  doc.setFillColor(0,32,91); doc.rect(0,0,P,20,'F');
+  doc.setFillColor(22,51,37); doc.rect(0,0,P,20,'F');
   doc.setTextColor(255); doc.setFont('helvetica','bold'); doc.setFontSize(12);
-  doc.text('PREDIA - RESULTADOS DE REFERENCIA', M, 12.5, {charSpace:0.4});
+  doc.text('PREDIA - RESULTADOS DE REFERENCIA', M, 12.5, {});
   doc.setFont('helvetica','normal'); doc.setFontSize(8.5); doc.setTextColor(0,181,226);
-  doc.text(pname, P-M, 12.5, {align:'right',charSpace:0.4});
+  doc.text(pname, P-M, 12.5, {align:'right',});
   let y2=30; pdfHead(doc,M,y2,'Qué conviene revisar'); y2+=7;
   const nivCol={ok:[26,157,90],warn:[217,139,23],na:[154,166,178],bad:[214,69,69],alto:[214,69,69]};
   const cw=(W-6)/2, chh=31, inds=GEO.indicadores||[];
@@ -329,7 +329,7 @@ function generarPDF(){
     const c=i%2, r=(i/2)|0, x=M+c*(cw+6), yy=y2+r*(chh+5);
     doc.setDrawColor(228,233,240); doc.setLineWidth(0.3); doc.roundedRect(x,yy,cw,chh,2,2,'S');
     const nc=nivCol[it.nivel]||nivCol.na; doc.setFillColor(nc[0],nc[1],nc[2]); doc.circle(x+5,yy+5.4,1.5,'F');
-    doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(0,32,91);
+    doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(22,51,37);
     doc.text(doc.splitTextToSize(it.nombre,cw-14).slice(0,1), x+9, yy+6.3);
     doc.setFont('helvetica','normal'); doc.setFontSize(6.8); doc.setTextColor(90,100,112);
     doc.text(doc.splitTextToSize(it.detalle||'',cw-10).slice(0,4), x+5, yy+12.3);
@@ -347,8 +347,8 @@ function generarPDF(){
   doc.setDrawColor(216,221,228); doc.setLineWidth(0.3); doc.line(M,281,P-M,281);
   doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(154,160,168);
   doc.text('Ejemplo que combina un modelo de dron adaptado y resultados de referencia de fuentes secundarias. Lluvia hipotetica. No se consulta una ubicacion real ni se reemplazan estudios de detalle.', M, 285.5, {maxWidth:W});
-  doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(0,32,91);
-  doc.text('EJEMPLO ADAPTADO - SIN UBICACION REAL', M, 293.5, {charSpace:2});
+  doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(22,51,37);
+  doc.text('EJEMPLO ADAPTADO - SIN UBICACION REAL', M, 293.5, {});
   doc.setProperties({title:'Predia - ficha de ejemplo',author:'Predia',subject:'Ejemplo adaptado sin ubicacion real',creator:'Predia'});
   doc.save('Predia_ficha_ejemplo.pdf');
   track('evaluacion', e); track('pdf', {predio:lastPredio});
@@ -532,7 +532,7 @@ function compatibleTerrainRenderer(canvas){
       ctx.fillStyle='#0b1118';ctx.fillRect(0,0,frameWidth,frameHeight);
       scene.updateMatrixWorld(true);camera.updateMatrixWorld(true);
       mat.copy(camera.projectionMatrix).multiply(camera.matrixWorldInverse).multiply(group.matrixWorld);
-      const step=3,points=new Map(),cells=[],R=T.rows,C=T.cols;
+      const step=2,points=new Map(),cells=[],R=T.rows,C=T.cols;
       for(let r=0;r<R-step;r+=step)for(let c=0;c<C-step;c+=step){
         const ids=[r*C+c,r*C+c+step,(r+step)*C+c,(r+step)*C+c+step];
         if(ids.some(i=>T.z_cm[i]<0))continue;
